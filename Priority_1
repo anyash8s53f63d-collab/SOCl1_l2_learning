@@ -1,0 +1,52 @@
+OSI Model:
+
+The OSI model breaks network communication down into 7 simple steps, showing how a message travels from your screen, through cables or Wi-Fi, to another computer—and back again.
+Think of it like sending a physical package through a courier service. Each department does one specific job and hands the box to the next department.
+
+1. Application Layer (Layer 7) — What you see and use
+
+This is the only layer you actually interact with. It is not the app itself (like Chrome or WhatsApp), but the built-in network rules that let those apps talk to the internet.
+• What it does: Connects your software to the network. When you type a website address or hit "send" on an email, this layer starts the process.
+• Real-world examples: HTTP/HTTPS (web browsing), SMTP (sending email), DNS (turning website names into numbers).
+
+2. Presentation Layer (Layer 6) — The translator and security guard
+
+Computers do not all speak the same language, and data sent over the internet needs to be kept private. This layer gets the data ready for safe travel.
+• What it does:
+	• Translates: Converts data into a universal format both computers understand (like turning text into standard code or formatting a JPEG image).
+	• Compresses: Shrinks large files so they travel faster.
+	• Encrypts: Scrambles sensitive data (like passwords or bank info) so hackers cannot read it on the way.
+• Real-world examples: SSL/TLS (the lock icon in your browser), JPEG, MP4, ASCII.
+
+3. Session Layer (Layer 5) — The conversation manager
+
+When you stream a movie or join a video call, your computer and the server need to stay connected without dropping the conversation.
+• What it does: Opens a connection ("session"), keeps it alive while you talk or download, adds checkpoints (so if your Wi-Fi drops at 80%, you do not have to restart from 0%), and cleanly closes the connection when you are done.
+
+4. Transport Layer (Layer 4) — The shipping manager
+
+You cannot send a massive 2 GB movie across the internet in one giant piece—it would clog the network. This layer breaks data into smaller pieces and makes sure they arrive safely.
+• What it does:
+	• Splits data: Chops large files into small chunks called segments and numbers them (1 of 100, 2 of 100, etc.) so they can be put back in order later.
+	• Picks the delivery speed: Uses TCP (slow and careful—checks that every single piece arrives, used for web pages and emails) or UDP (fast and live—does not wait for missing pieces, used for live gaming and video calls).
+	• Uses Ports: Adds a "port number" so the receiving computer knows which open app should get the data (e.g., sending web data to your browser, not your Spotify).
+
+5. Network Layer (Layer 3) — The GPS and postal router
+
+Now that the data is chopped into pieces, it needs an address to find the right computer anywhere in the world.
+• What it does:
+	• Adds IP addresses: Stamps your IP address (return address) and the destination's IP address onto each chunk, turning it into a packet.
+	• Finds the best route: Routers use this layer like a GPS to pick the fastest path across the internet to reach the destination network.
+
+6. Data Link Layer (Layer 2) — The local delivery driver
+
+Once the packet reaches the right building or local Wi-Fi network, the IP address is not enough—it needs to find the exact physical device (your specific phone or laptop) on that local network.
+• What it does:
+	• Uses MAC addresses: Every device has a permanent hardware ID burned into its network card called a MAC address. This layer wraps the packet into a frame with the local device's MAC address.
+	• Checks for damage: Adds a mathematical check at the end of the frame. If electrical static corrupted the data during transit, this layer catches it and throws the damaged piece away.
+• Real-world devices: Wi-Fi access points, network switches.
+
+7. Physical Layer (Layer 1) — The actual roads and wires
+
+At the very bottom, there is no software left—just raw hardware moving pure data.
+• What it does: Takes all those organized frames and turns them into 1s and 0s (bits). It then pushes those 1s and 0s across physical space as electrical pulses through copper cables, flashes of light through fiber-optic cables, or invisible radio waves through Wi-Fi.

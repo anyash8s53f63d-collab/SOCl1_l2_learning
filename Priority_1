@@ -50,3 +50,57 @@ Once the packet reaches the right building or local Wi-Fi network, the IP addres
 
 At the very bottom, there is no software left—just raw hardware moving pure data.
 • What it does: Takes all those organized frames and turns them into 1s and 0s (bits). It then pushes those 1s and 0s across physical space as electrical pulses through copper cables, flashes of light through fiber-optic cables, or invisible radio waves through Wi-Fi.
+
+
+
+The 4 Layers of the TCP/IP Model
+
+
+1. Application Layer (Layer 4) — Everything your software needs
+
+In the TCP/IP model, this single layer combines the top three layers of the OSI model (Application, Presentation, and Session). Instead of splitting formatting, encryption, and app communication into separate steps, your apps handle all of it together here.
+• What it does: Gives your apps direct access to the network, formats the data (like turning text into HTML or compressing an image), encrypts it for safety, and manages your active connection.
+• Common protocols:
+	• HTTP/HTTPS: Loading websites safely.
+	• DNS: Acting as the internet's phonebook (turning google.com into an IP address).
+	• SMTP / IMAP: Sending and receiving emails.
+
+2. Transport Layer (Layer 3) — Reliable delivery & app sorting
+
+This layer works almost identically to Layer 4 of the OSI model. It ensures data gets from one specific app on your device to the exact right app on the receiving device.
+• What it does: Breaks large files into smaller pieces, assigns port numbers (so web traffic goes to your browser and music goes to your media player), and decides how carefully to send the data.
+• The two main engines:
+	• TCP (Transmission Control Protocol): The perfectionist. It establishes a connection first, numbers every piece of data, and asks the sender to resend anything that gets lost. Used for web pages, file downloads, and emails.
+	• UDP (User Datagram Protocol): The speedster. It fires off data without checking if every piece arrives. Used for live video calls, online gaming, and live sports where speed matters more than perfection.
+
+3. Internet Layer (Layer 2) — Global addressing and routing
+
+This matches Layer 3 (Network) of the OSI model. Its entire job is getting data packets across different networks—from your home Wi-Fi, through your Internet Service Provider (ISP), across undersea cables, to a server on the other side of the world.
+• What it does: Wraps data into packets, stamps them with your IP address (sender) and the destination's IP address, and hands them to routers that choose the best path across the globe.
+• Common protocols:
+	• IP (IPv4 and IPv6): The core addressing system of the internet.
+	• ICMP: Used for network diagnostics (like the ping command to check if a server is awake).
+
+4. Network Access Layer (Layer 1) — Local hardware and physical signals
+
+Also called the Link Layer, this combines the bottom two layers of the OSI model (Data Link and Physical). It handles everything required to move data across your immediate local connection.
+• What it does: Uses local hardware IDs (MAC addresses) to move data between your device and your Wi-Fi router, checks for electrical interference or damaged signals, and converts everything into raw 1s and 0s (radio waves, light pulses, or electrical signals) to travel through the air or cables.
+• Real-world examples: Ethernet cables, Wi-Fi (802.11), fiber-optic lines.
+
+How OSI and TCP/IP Line Up Side-by-Side
+
+
+OSI Model (7 Layers)	TCP/IP Model (4 Layers)	Main Job
+7. Application
+6. Presentation
+5. Session	4. Application	User software, formatting, encryption, and sessions
+4. Transport	3. Transport	Splitting data, port numbers, TCP/UDP reliability
+3. Network	2. Internet	IP addresses and routing across the globe
+2. Data Link
+1. Physical	1. Network Access	MAC addresses, Wi-Fi/Ethernet, and physical signals
+
+
+Why Do Both Models Exist?
+
+• OSI is used as a teaching and troubleshooting tool. Network engineers still say things like "It's a Layer 2 issue" (meaning a switch or cable problem) or "Check Layer 3" (meaning an IP or router problem) because the 7 layers make it easy to pinpoint where something broke.
+• TCP/IP is the actual rulebook built into every phone, laptop, and router on Earth.

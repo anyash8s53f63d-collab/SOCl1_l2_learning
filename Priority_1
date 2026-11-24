@@ -104,3 +104,61 @@ Why Do Both Models Exist?
 
 • OSI is used as a teaching and troubleshooting tool. Network engineers still say things like "It's a Layer 2 issue" (meaning a switch or cable problem) or "Check Layer 3" (meaning an IP or router problem) because the 7 layers make it easy to pinpoint where something broke.
 • TCP/IP is the actual rulebook built into every phone, laptop, and router on Earth.
+
+
+
+TCP vs. UDP (Reliability vs. Speed)
+
+When the Transport Layer prepares your data to cross the internet, it chooses between two completely different delivery styles:
+
+Feature	TCP (Transmission Control Protocol)	UDP (User Datagram Protocol)
+Nickname	The Perfectionist	The Speedster
+Connection	Connects first before sending (Handshake)	Sends immediately without asking
+Reliability	Guarantees 100% of data arrives intact	No guarantees; lost pieces stay lost
+Ordering	Puts scrambled chunks back in exact order	Delivers chunks in whatever order they arrive
+Speed	Slower (due to checking and confirmations)	Very fast (zero waiting)
+Best For	Websites, emails, bank transfers, file downloads	Live video calls, online gaming, live sports streams
+
+• Why UDP is great for live video/gaming: If you are on a Zoom call and a tiny fraction of a second of audio gets lost, you do not want the call to freeze for 3 seconds just to go back and fetch that missed syllable. You want it to keep moving live.
+• Why TCP is essential for websites/files: If you download a PDF or load a bank balance, missing even 1% of the data corrupts the whole file. TCP makes sure every single piece arrives.
+
+Part 2: The TCP 3-Way Handshake
+
+Before TCP sends a single piece of actual website data, your device and the server perform a quick three-step greeting to make sure both sides are awake and ready:
+1. SYN (Synchronize): Your phone sends a tiny message to the server saying: "Hey, I want to talk. Can you hear me?"
+2. SYN-ACK (Synchronize-Acknowledge): The server replies: "Yes, I hear you! Can you hear me too?"
+3. ACK (Acknowledge): Your phone replies: "Loud and clear! Starting data transfer now."
+Once those three messages finish (usually in under 50 milliseconds), the reliable tunnel is open and data starts flowing.
+
+Part 3: Step-by-Step — What Happens When You Open a Website
+
+Imagine you type ://example.com into your phone's browser and hit Enter. Here is how the TCP/IP model (and OSI layers) handle it from top to bottom:
+
+Step 1: Finding the Address (Application Layer)
+
+• Your browser does not know where ://example.com lives—computers only understand IP addresses.
+• Your phone sends a quick DNS request (using fast UDP) to a DNS server (the internet's phonebook), which replies: "That website is at IP address 93.184.216.34."
+• Your browser then writes an HTTP/HTTPS request saying "Please send me the homepage," and encrypts it so nobody spying on your Wi-Fi can read it.
+
+Step 2: Opening the Connection & Packaging (Transport Layer)
+
+• Because a webpage cannot afford missing images or broken text, your phone chooses TCP.
+• It performs the 3-Way Handshake (SYN → SYN-ACK → ACK) with 93.184.216.34.
+• It attaches Port 443 (the standard port for secure HTTPS web traffic) so the server knows this request is meant for its web server software, not its email software.
+
+Step 3: Addressing for the Global Trip (Internet Layer)
+
+• Your phone wraps the data into an IP Packet and stamps two addresses on the outside:
+	• From: Your phone's IP address.
+	• To: 93.184.216.34 (the website's server).
+
+Step 4: Leaving Your Room (Network Access Layer)
+
+• Your phone needs to hand this packet to your home Wi-Fi router first. It attaches your router's MAC address (hardware ID) to create a Frame.
+• Your phone's Wi-Fi chip converts the frame's 1s and 0s into invisible radio waves and beams them through the air to your router.
+
+Step 5: Crossing the World & Returning
+
+• Hopping across routers: Your home router reads the destination IP (93.184.216.34), strips off your home MAC address, puts on the next ISP router's MAC address, and sends it through fiber-optic cables across cities and oceans until it reaches the website's server.
+• The Server Replies: The server unwraps the layers (Bottom → Top), reads your HTTPS request, chops the homepage HTML and images into numbered TCP chunks, and sends them all the way back to your phone.
+• Screen Loads: Your phone checks that every numbered TCP chunk arrived, unwraps and decrypts the data, and draws the webpage on your screen.

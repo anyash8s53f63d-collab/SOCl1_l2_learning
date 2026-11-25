@@ -1,1 +1,59 @@
+IP Address ,subnetting
 
+An IP address is a unique digital mailing address assigned to every device on a network so data knows where to go, while subnetting is the process of dividing one big network into smaller, organized mini-networks.
+
+Part 1: What is an IP Address?
+
+Think of an IP address just like your home street address. Without it, a delivery driver (a router) would have no idea where to drop off your package.
+
+1. IPv4 vs. IPv6
+
+• IPv4 (The Classic Address): Looks like four numbers separated by dots, such as 192.168.1.25. Each number can range from 0 to 255 (because each section is 8 bits, making 32 bits total). There are about 4.3 billion IPv4 addresses—and we ran out of them because of smartphones, laptops, and smart TVs.
+• IPv6 (The Modern Replacement): Looks much longer, using letters and numbers separated by colons, like 2001:0db8:85a3:0000:0000:8a2e:0370:7334 (128 bits). It provides enough addresses for every grain of sand on Earth.
+
+2. Public IP vs. Private IP
+
+To save IPv4 addresses and keep your devices safe, networks use two types of IPs:
+• Public IP: Your house's single address visible to the outside internet, given to your router by your Internet Service Provider (ISP).
+• Private IP: Internal nicknames your router gives to devices inside your home Wi-Fi (like 192.168.1.2 for your phone, 192.168.1.3 for your laptop). Millions of homes use the exact same private IPs internally, and your router uses a trick called NAT (Network Address Translation) to share one Public IP among all your devices.
+
+Part 2: Subnetting Basics
+
+Every IP address has two parts—just like a street address has a Street Name and a House Number:
+1. Network Portion (Street Name): Identifies which network you are on.
+2. Host Portion (House Number): Identifies which specific device you are on that network.
+
+What is a Subnet Mask?
+
+A Subnet Mask (like 255.255.255.0) is a filter that tells your computer where the Street Name ends and the House Number begins.
+• 255 = Locked (This part is the Network / Street Name).
+• 0 = Open for devices (This part is the Host / House Number).
+Example:
+• IP Address: 192.168.1.25
+• Subnet Mask: 255.255.255.0
+• Because the first three numbers are 255, 192.168.1 is your network (your street), and .25 is your specific device (house #25). Any device starting with 192.168.1.x is in the same room/network and can talk directly without needing a router.
+
+CIDR Notation (The Shortcut: /24)
+
+Instead of writing out 255.255.255.0 every time, engineers count how many binary 1s are in the mask and write it with a slash:
+• 255.255.255.0 = /24 (24 bits locked for the network; leaves 8 bits for devices = 254 usable devices).
+• 255.255.0.0 = /16 (16 bits locked for the network; leaves 65,534 usable devices).
+• 255.0.0.0 = /8 (8 bits locked for the network; leaves 16.7 million usable devices).
+
+Why Do We Subnet?
+
+Imagine a company with 500 computers all on one giant network:
+1. Less Traffic Noise: Computers constantly broadcast "Who is here?" messages. Splitting 500 computers into smaller departments (Sales, HR, Engineering) stops everyone from hearing everyone else's chatter.
+2. Better Security: You can block the Guest Wi-Fi subnet from talking to the Finance subnet.
+3. No Wasted Addresses: If a small branch office only has 10 computers, you give them a tiny /28 subnet (14 usable IPs) instead of wasting a whole /24 (254 IPs).
+
+Quick Cheat Sheet: Common Subnets
+
+
+CIDR	Subnet Mask	Total IPs	Usable Device IPs*	Common Use
+/24	255.255.255.0	256	254	Standard home or small office Wi-Fi
+/25	255.255.255.128	128	126	Medium office floor
+/26	255.255.255.192	64	62	Small department
+/30	255.255.255.252	4	2	Direct cable link between two routers
+
+*Note: 2 IPs are always reserved in every subnet—the very first IP is the Network ID (the street sign), and the very last IP is the Broadcast Address (a megaphone to shout to every device on that subnet).

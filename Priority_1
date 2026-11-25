@@ -1,4 +1,4 @@
-OSI Model:
+OSI Model TCP & UDP:
 
 The OSI model breaks network communication down into 7 simple steps, showing how a message travels from your screen, through cables or Wi-Fi, to another computer—and back again.
 Think of it like sending a physical package through a courier service. Each department does one specific job and hands the box to the next department.

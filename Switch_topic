@@ -1,0 +1,24 @@
+Switches connect devices inside the same subnet using hardware IDs (MAC addresses), Routers connect different subnets together using IP addresses, and a Default Gateway is simply the router's local IP address that acts as the exit door out of your subnet.
+Think of a subnet like an office floor:
+• A Switch is the internal mailroom that delivers memos between desks on the same floor.
+• A Router is the elevator bank that carries packages between different floors or out to the rest of the world.
+• The Default Gateway is the specific elevator door on your floor.
+
+1. The Switch (Inside One Subnet — Layer 2)
+
+A switch connects multiple devices (PCs, printers, Wi-Fi access points) together on a single local network.
+• What it looks at: MAC addresses (the permanent hardware IDs burned into network cards). It does not care about IP addresses.
+• How it works: The switch keeps a cheat sheet called a MAC Address Table (e.g., "Port 1 = Laptop A's MAC, Port 2 = Printer's MAC"). When Laptop A sends data to the Printer on the same subnet (192.168.1.x), the switch reads the destination MAC address and sends the data only out of Port 2.
+• Limitation: A standard switch cannot talk to other subnets. If data needs to leave 192.168.1.x, the switch has no idea where to send it on its own.
+
+2. The Router (Between Different Subnets — Layer 3)
+
+A router sits at the boundary between two or more different networks/subnets (for example, connecting your home subnet 192.168.1.x to your ISP's internet network, or connecting a Sales subnet 10.0.1.x to an HR subnet 10.0.2.x).
+• What it looks at: IP addresses and Subnet Masks.
+• How it works: Every port (interface) on a router belongs to a different subnet. The router maintains a Routing Table—essentially a map of which subnets are connected to which ports. When a packet arrives, the router checks the destination IP, looks up the matching subnet in its map, and forwards the packet out the right door.
+
+3. The Default Gateway (Your Subnet's Exit Door)
+
+A Default Gateway is not a separate physical box—it is simply the IP address of the router's interface plugged into your local subnet (for example, 192.168.1.1 on a home network).
+• Every device on a subnet is configured with three basic settings: its own IP address, its Subnet Mask, and its Default Gateway.
+• Whenever your device wants to talk to an IP address that is not on your local street (subnet), it automatically hands the traffic to the Default Gateway so the router can figure out where it goes next.
